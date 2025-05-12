@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Ареал лося">
-  <title>Ареал лося</title>
+  <meta name="description" content="Ареал лосів">
+  <title>Ареал лосів</title>
   <link href="../css/style.css" rel="stylesheet">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body class="custom-green-theme">
   <header class="text-center bg-success text-white py-3">
-    <h1>Ареал лося</h1>
+    <h1>Ареал лосів</h1>
     <nav class="nav justify-content-center">
       <a href="../index.html" class="nav-link text-white">Головна</a>
       <a href="morphology.html" class="nav-link text-white">Зовнішній вигляд</a>
@@ -20,20 +20,78 @@
   </header>
 
   <main class="container py-4">
-    <article>
-      <h2 class="h2 text-success">Поширення та середовище проживання</h2>
-      <p>Лосі живуть у північній півкулі — в Євразії та Північній Америці. Вони пристосовані до холодного клімату та болотистих або лісистих місцевостей.</p>
-      <ul class="list-group">
-        <li class="list-group-item">У Північній Америці — від Аляски до півночі США.</li>
-        <li class="list-group-item">У Європі — Скандинавія, країни Балтії, Польща, Білорусь, Україна, Росія.</li>
-        <li class="list-group-item">У Сибіру — до самого узбережжя Тихого океану.</li>
-        <li class="list-group-item">Вони надають перевагу болотам, тайзі, заболоченим лісам та озерам.</li>
-      </ul>
-    </article>
+    <div class="row">
+      <div class="col-md-3">
+        <aside class="sticky-top pt-3">
+          <nav class="nav flex-column">
+            <h4>Зміст</h4>
+            <a href="#continentsList" class="nav-link" data-bs-toggle="collapse">Континенти</a>
+            <a href="#countriesList" class="nav-link" data-bs-toggle="collapse">Країни</a>
+            <a href="#biomesList" class="nav-link" data-bs-toggle="collapse">WWF Біоми</a>
+          </nav>
+        </aside>
+      </div>
+      <div class="col-md-9">
+        <h2 class="h2 text-success">Ареал лосів</h2>
+
+        <article class="mt-4">
+          <section id="continents">
+            <h3>
+              <button class="btn btn-success w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#continentsList">
+                Континенти
+              </button>
+            </h3>
+            <div class="collapse show" id="continentsList">
+              <ul class="list-group mb-3">
+                <li class="list-group-item">Євразія</li>
+                <li class="list-group-item">Північна Америка</li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="countries">
+            <h3>
+              <button class="btn btn-success w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#countriesList">
+                Країни
+              </button>
+            </h3>
+            <div class="collapse show" id="countriesList">
+              <ul class="list-group mb-3">
+                <li class="list-group-item">Канада</li>
+                <li class="list-group-item">США (північні штати)</li>
+                <li class="list-group-item">Норвегія</li>
+                <li class="list-group-item">Швеція</li>
+                <li class="list-group-item">Фінляндія</li>
+                <li class="list-group-item">Росія</li>
+                <li class="list-group-item">Білорусь</li>
+                <li class="list-group-item">Україна</li>
+                <li class="list-group-item">Польща</li>
+              </ul>
+            </div>
+          </section>
+
+          <section id="biomes">
+            <h3>
+              <button class="btn btn-success w-100 text-start" type="button" data-bs-toggle="collapse" data-bs-target="#biomesList">
+                WWF Біоми
+              </button>
+            </h3>
+            <div class="collapse show" id="biomesList">
+              <ul class="list-group">
+                <li class="list-group-item">Бореальні ліси (тайга)</li>
+                <li class="list-group-item">Помірні широколистяні ліси</li>
+                <li class="list-group-item">Болота та вологі низовини</li>
+              </ul>
+            </div>
+          </section>
+        </article>
+      </div>
+    </div>
   </main>
 
   <footer class="text-center bg-dark text-white py-2">
     <p>&copy; 2025 Сайт про лосів</p>
   </footer>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
