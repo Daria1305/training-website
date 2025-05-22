@@ -1,14 +1,11 @@
 // Експорт специфікації Swagger/OpenAPI для документації про API
 export const swaggerSpec = {
-    // Версія специфікації OpenAPI
     openapi: '3.0.0',
-    // Загальна інформація про API
     info: {
-        title: 'API Сайту про Зайців',
+        title: 'API Сайту про Лосів',
         version: '1.0.0',
-        description: 'Документація API для Сайту про Зайців',
+        description: 'Документація API для Сайту про Лосів',
     },
-    // Налаштування серверів для тестування API
     servers: [
         {
             url:
@@ -18,195 +15,180 @@ export const swaggerSpec = {
             description: 'Development server',
         },
     ],
-    // Визначення кінцевих точок (endpoints) REST API та операцій з ними
     paths: {
-        '/api/rabbits': {
-            // GET запит для отримання всіх зайців
+        '/api/moose': {
             get: {
-                summary: 'Отримати всіх зайців',
+                summary: 'Отримати всіх лосів',
                 responses: {
                     '200': {
-                        description: 'Список всіх зайців',
+                        description: 'Список всіх лосів',
                         content: {
                             'application/json': {
                                 schema: {
                                     type: 'array',
-                                    items: { $ref: '#/components/schemas/Rabbit' },
+                                    items: { $ref: '#/components/schemas/Moose' },
                                 },
                             },
                         },
                     },
                 },
             },
-
-            // POST запит для створення нового зайця
             post: {
-                summary: 'Створити нового зайця',
+                summary: 'Створити нового лося',
                 requestBody: {
                     required: true,
                     content: {
                         'application/json': {
-                            schema: { $ref: '#/components/schemas/Rabbit' },
+                            schema: { $ref: '#/components/schemas/Moose' },
                         },
                     },
                 },
                 responses: {
                     '201': {
-                        description: "Створений об'єкт зайця",
+                        description: "Створений об'єкт лося",
                         content: {
                             'application/json': {
-                                schema: { $ref: '#/components/schemas/Rabbit' },
+                                schema: { $ref: '#/components/schemas/Moose' },
                             },
                         },
                     },
                 },
             },
         },
-
-        // Операції для конкретного зайця за ID
-        '/api/rabbits/{id}': {
-            // GET запит для отримання зайця за ID
+        '/api/moose/{id}': {
             get: {
-                summary: 'Отримати зайця за ID',
+                summary: 'Отримати лося за ID',
                 parameters: [
                     {
                         in: 'path',
                         name: 'id',
                         required: true,
                         schema: { type: 'string' },
-                        description: 'ID зайця',
+                        description: 'ID лося',
                     },
                 ],
                 responses: {
                     '200': {
-                        description: "Об'єкт зайця",
+                        description: "Об'єкт лося",
                         content: {
                             'application/json': {
-                                schema: { $ref: '#/components/schemas/Rabbit' },
+                                schema: { $ref: '#/components/schemas/Moose' },
                             },
                         },
                     },
-                    '404': { description: 'Зайця не знайдено' },
+                    '404': { description: 'Лося не знайдено' },
                 },
             },
-
-            // PUT запит для повного оновлення зайця за ID
             put: {
-                summary: 'Повністю оновити зайця',
+                summary: 'Повністю оновити лося',
                 parameters: [
                     {
                         in: 'path',
                         name: 'id',
                         required: true,
                         schema: { type: 'string' },
-                        description: 'ID зайця',
+                        description: 'ID лося',
                     },
                 ],
                 requestBody: {
                     required: true,
                     content: {
                         'application/json': {
-                            schema: { $ref: '#/components/schemas/Rabbit' },
+                            schema: { $ref: '#/components/schemas/Moose' },
                         },
                     },
                 },
                 responses: {
                     '200': {
-                        description: "Оновлений об'єкт зайця",
+                        description: "Оновлений об'єкт лося",
                         content: {
                             'application/json': {
-                                schema: { $ref: '#/components/schemas/Rabbit' },
+                                schema: { $ref: '#/components/schemas/Moose' },
                             },
                         },
                     },
-                    '404': { description: 'Зайця не знайдено' },
+                    '404': { description: 'Лося не знайдено' },
                 },
             },
-            // PATCH запит для часткового оновлення зайця за ID
             patch: {
-                summary: 'Частково оновити зайця',
+                summary: 'Частково оновити лося',
                 parameters: [
                     {
                         in: 'path',
                         name: 'id',
                         required: true,
                         schema: { type: 'string' },
-                        description: 'ID зайця',
+                        description: 'ID лося',
                     },
                 ],
                 requestBody: {
                     required: true,
                     content: {
                         'application/json': {
-                            schema: { $ref: '#/components/schemas/Rabbit' },
+                            schema: { $ref: '#/components/schemas/Moose' },
                         },
                     },
                 },
                 responses: {
                     '200': {
-                        description: "Оновлений об'єкт зайця",
+                        description: "Оновлений об'єкт лося",
                         content: {
                             'application/json': {
-                                schema: { $ref: '#/components/schemas/Rabbit' },
+                                schema: { $ref: '#/components/schemas/Moose' },
                             },
                         },
                     },
-                    '404': { description: 'Зайця не знайдено' },
+                    '404': { description: 'Лося не знайдено' },
                 },
             },
-            // DELETE запит для видалення даних про зайця за ID
             delete: {
-                summary: 'Видалити дані про зайця',
+                summary: 'Видалити дані про лося',
                 parameters: [
                     {
                         in: 'path',
                         name: 'id',
                         required: true,
                         schema: { type: 'string' },
-                        description: 'ID зайця',
+                        description: 'ID лося',
                     },
                 ],
                 responses: {
                     '200': { description: 'Повідомлення про успішне видалення' },
-                    '404': { description: 'Зайця не знайдено' },
+                    '404': { description: 'Лося не знайдено' },
                 },
             },
         },
     },
-
-    // Визначення компонентів для повторного використання
     components: {
-        // Схеми даних
         schemas: {
-            // Схема об'єкта Заєць
-            Rabbit: {
+            Moose: {
                 type: 'object',
                 required: ['name', 'age', 'height', 'weight', 'gender'],
                 properties: {
                     name: {
                         type: 'string',
-                        description: "Ім'я зайця",
+                        description: "Ім'я лося",
                     },
                     age: {
                         type: 'number',
-                        description: 'Вік зайця у роках',
+                        description: 'Вік лося у роках',
                     },
                     height: {
                         type: 'number',
-                        description: 'Висота зайця в сантиметрах',
+                        description: 'Висота лося в сантиметрах',
                     },
                     weight: {
                         type: 'number',
-                        description: 'Вага зайця в кілограмах',
+                        description: 'Вага лося в кілограмах',
                     },
                     gender: {
                         type: 'string',
                         enum: ['male', 'female'],
-                        description: 'Стать зайця',
+                        description: 'Стать лося',
                     },
                     description: {
                         type: 'string',
-                        description: "Опис зайця (необов'язкове поле)",
+                        description: "Опис лося (необов'язкове поле)",
                     },
                 },
             },

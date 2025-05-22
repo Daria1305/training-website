@@ -1,18 +1,19 @@
 import { Schema, model } from 'mongoose';
 
-// Інтерфейс для об'єкта "Заєць"
-interface IRabbit {
-    name: string; // Ім'я зайця
-    age: number; // Вік зайця у роках
-    height: number; // Висота зайця в сантиметрах
-    weight: number; // Вага зайця в кілограмах
-    gender: 'male' | 'female'; // Стать зайця: 'male' - самець, 'female' - самка
-    description?: string; // Опис зайця (необов'язкове поле)
+// Інтерфейс для об'єкта "Лось"
+interface IMoose {
+    name: string; // Ім'я лося
+    age: number; // Вік лося у роках
+    height: number; // Висота лося в сантиметрах
+    weight: number; // Вага лося в кілограмах
+    gender: 'male' | 'female'; // Стать лося: 'male' - самець, 'female' - самка
+    description?: string; // Опис лося (необов'язкове поле)
     dateAdded: Date; // Дата додавання запису до бази даних
+    hornAge: number; // Вік рогів у роках
 }
 
-// Схема MongoDB для моделі "Заєць"
-const rabbitSchema = new Schema<IRabbit>({
+// Схема MongoDB для моделі "Лось"
+const mooseSchema = new Schema<IMoose>({
     name: {
         type: String,
         required: true, // Поле є обов'язковим
@@ -39,8 +40,12 @@ const rabbitSchema = new Schema<IRabbit>({
         type: Date,
         default: Date.now, // Значення за замовчуванням - поточна дата і час
     },
+    hornAge: {
+        type: Number,
+        required: true, // Поле є обов'язковим
+    },
 });
 
 // Створення моделі Mongoose на основі схеми
-export const Rabbit = model<IRabbit>('Rabbit', rabbitSchema);
-export type { IRabbit }; // Експортуємо інтерфейс для використання в інших файлах
+export const Moose = model<IMoose>('Moose', mooseSchema);
+export type { IMoose }; // Експортуємо інтерфейс для використання в інших файлах

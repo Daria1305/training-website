@@ -1,18 +1,18 @@
 import { Router, Request, Response } from 'express';
 import { container } from '../config/container';
-import { RabbitRepository } from '../repositories/RabbitRepository';
+import { MooseRepository } from '../repositories/MooseRepository';
 
 // Створюємо новий обробник HTTP-запитів Express
 const router = Router();
-// Отримуємо екземпляр репозиторію зайців з контейнера інверсії залежностей
-const rabbitRepository = container.get(RabbitRepository);
+// Отримуємо екземпляр репозиторію лосів з контейнера інверсії залежностей
+const mooseRepository = container.get(MooseRepository);
 
-// Обробка HTTP-запиту GET / - отримання всіх записів зайців
+// Обробка HTTP-запиту GET / - отримання всіх записів лосів
 router.get('/', (async (_req: Request, res: Response) => {
     try {
-        // Отримуємо всі записи зайців з бази даних через репозиторій
-        const rabbits = await rabbitRepository.findAll();
-        res.json(rabbits);
+        // Отримуємо всі записи лосів з бази даних через репозиторій
+        const moose = await mooseRepository.findAll();
+        res.json(moose);
     } catch (error) {
         // Обробка помилки
         const errorMessage = error instanceof Error ? error.message : 'Виникла невідома помилка';
@@ -20,16 +20,16 @@ router.get('/', (async (_req: Request, res: Response) => {
     }
 }) as unknown as (req: Request, res: Response) => void);
 
-// Обробка HTTP-запиту GET /:id - отримання запису одного зайця за ідентифікатором
+// Обробка HTTP-запиту GET /:id - отримання запису одного лося за ідентифікатором
 router.get('/:id', (async (req: Request, res: Response) => {
     try {
-        // Пошук зайця за ідентифікатором
-        const rabbit = await rabbitRepository.findById(req.params.id);
-        if (rabbit) {
-            res.json(rabbit);
+        // Пошук лося за ідентифікатором
+        const moose = await mooseRepository.findById(req.params.id);
+        if (moose) {
+            res.json(moose);
         } else {
-            // Якщо заєць не знайдений, повертаємо 404 помилку
-            res.status(404).json({ message: 'Запис зайця не знайдено' });
+            // Якщо лось не знайдений, повертаємо 404 помилку
+            res.status(404).json({ message: 'Запис лося не знайдено' });
         }
     } catch (error) {
         // Обробка помилки
@@ -38,13 +38,13 @@ router.get('/:id', (async (req: Request, res: Response) => {
     }
 }) as unknown as (req: Request, res: Response) => void);
 
-// Обробка HTTP-запиту POST / - створення нового запису зайця
+// Обробка HTTP-запиту POST / - створення нового запису лося
 router.post('/', (async (req: Request, res: Response) => {
     try {
-        // Створюємо новий запис зайця з даних запиту
-        const newRabbit = await rabbitRepository.create(req.body);
-        // Повертаємо статус 201 (Created) і дані створеного зайця
-        res.status(201).json(newRabbit);
+        // Створюємо новий запис лося з даних запиту
+        const newMoose = await mooseRepository.create(req.body);
+        // Повертаємо статус 201 (Created) і дані створеного лося
+        res.status(201).json(newMoose);
     } catch (error) {
         // Обробка помилки
         const errorMessage = error instanceof Error ? error.message : 'Виникла невідома помилка';
@@ -52,7 +52,7 @@ router.post('/', (async (req: Request, res: Response) => {
     }
 }) as unknown as (req: Request, res: Response) => void);
 
-// Обробка HTTP-запиту PUT /:id - повне оновлення запису зайця
+// Обробка HTTP-запиту PUT /:id - повне оновлення запису лося
 router.put('/:id', (async (req: Request, res: Response) => {
     try {
         // Перевірка наявності всіх обов'язкових полів для PUT запиту
@@ -66,13 +66,13 @@ router.put('/:id', (async (req: Request, res: Response) => {
             });
         }
 
-        // Оновлюємо зайця з вказаним ID
-        const rabbit = await rabbitRepository.update(req.params.id, req.body);
-        if (rabbit) {
-            return res.json(rabbit);
+        // Оновлюємо лося з вказаним ID
+        const moose = await mooseRepository.update(req.params.id, req.body);
+        if (moose) {
+            return res.json(moose);
         } else {
-            // Якщо заєць не знайдений, повертаємо 404 помилку
-            return res.status(404).json({ message: 'Запис зайця не знайдено' });
+            // Якщо лось не знайдений, повертаємо 404 помилку
+            return res.status(404).json({ message: 'Запис лося не знайдено' });
         }
     } catch (error) {
         // Обробка помилки
@@ -81,16 +81,16 @@ router.put('/:id', (async (req: Request, res: Response) => {
     }
 }) as unknown as (req: Request, res: Response) => void);
 
-// Обробка HTTP-запиту PATCH /:id - часткове оновлення запису зайця
+// Обробка HTTP-запиту PATCH /:id - часткове оновлення запису лося
 router.patch('/:id', (async (req: Request, res: Response) => {
     try {
-        // Часткове оновлення запису зайця - передаються лише ті поля, які потрібно змінити
-        const rabbit = await rabbitRepository.patch(req.params.id, req.body);
-        if (rabbit) {
-            res.json(rabbit);
+        // Часткове оновлення запису лося - передаються лише ті поля, які потрібно змінити
+        const moose = await mooseRepository.patch(req.params.id, req.body);
+        if (moose) {
+            res.json(moose);
         } else {
-            // Якщо заєць не знайдений, повертаємо 404 помилку
-            res.status(404).json({ message: 'Запис зайця не знайдено' });
+            // Якщо лось не знайдений, повертаємо 404 помилку
+            res.status(404).json({ message: 'Запис лося не знайдено' });
         }
     } catch (error) {
         // Обробка помилки
@@ -99,17 +99,17 @@ router.patch('/:id', (async (req: Request, res: Response) => {
     }
 }) as unknown as (req: Request, res: Response) => void);
 
-// Обробка HTTP-запиту DELETE /:id - видалення запису зайця
+// Обробка HTTP-запиту DELETE /:id - видалення запису лося
 router.delete('/:id', (async (req: Request, res: Response) => {
     try {
-        // Видаляємо дані про зайця за ID
-        const rabbit = await rabbitRepository.delete(req.params.id);
-        if (rabbit) {
+        // Видаляємо дані про лося за ID
+        const moose = await mooseRepository.delete(req.params.id);
+        if (moose) {
             // У разі успіху повертаємо повідомлення про видалення
-            res.json({ message: 'Запис про зайця видалено' });
+            res.json({ message: 'Запис про лося видалено' });
         } else {
-            // Якщо заєць не знайдений, повертаємо 404 помилку
-            res.status(404).json({ message: 'Запис про зайця не знайдено' });
+            // Якщо лось не знайдений, повертаємо 404 помилку
+            res.status(404).json({ message: 'Запис про лося не знайдено' });
         }
     } catch (error) {
         // Обробка помилки
